@@ -1,0 +1,55 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/lib/bootstrap/bootstrap.css",
+    "inputFiles": [
+      "node_modules/bootstrap/dist/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/bootstrap/bootstrap.js",
+    "inputFiles": [
+      "node_modules/bootstrap/dist/js/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/jquery/jquery.js",
+    "inputFiles": [
+      "node_modules/jquery/dist/jquery.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js",
+    "inputFiles": [
+      "node_modules/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/swiper/swiper.css",
+    "inputFiles": [
+      "node_modules/swiper/dist/css/swiper.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/swiper/swiper.js",
+    "inputFiles": [
+      "node_modules/swiper/dist/js/swiper.js"
+    ]
+  }
+]
