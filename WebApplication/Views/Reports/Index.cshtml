@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication.Models.Report>
+
+@{
+    ViewData["Title"] = "Reportes";
+    Layout = "_LayoutAdmin";
+}
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Resolved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Resolved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a class="float-left ml-2 btn btn-sm btn-outline-primary" asp-action="DetailsAdmin" asp-controller="Reservations" asp-route-id="@item.ReservationId">Ver reserva</a>
+                    @if (item.Resolved == false)
+                    {
+                        <form asp-action="Resolve" asp-route-id="@item.Id">
+                            <input name="id" value="@item.Id" hidden />
+                            <input type="submit" value="Resolver" class="float-left ml-2 btn btn-sm btn-primary" />
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

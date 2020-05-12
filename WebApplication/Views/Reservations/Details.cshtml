@@ -93,3 +93,40 @@
         }
     </tbody>
 </table>
+
+@if (Model.Returned != true && Model.Delivered == true)
+{
+    <a asp-action="Create" asp-controller="Reports" asp-route-reservationId="@Model.Id" class="btn btn-sm btn-primary mt-4 mb-2"><span class="fas fa-plus"></span> Agregar reporte</a>
+}
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reports.First().Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reports.First().Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reports.First().Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Reports)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

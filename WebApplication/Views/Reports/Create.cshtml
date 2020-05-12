@@ -1,0 +1,33 @@
+﻿@model WebApplication.Models.Report
+
+@{
+    ViewData["Title"] = "Crear reporte";
+}
+
+<h2 class="mt-5">@ViewData["Title"]</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Resolved" hidden />
+            <input asp-for="ReservationId" hidden />
+            <input asp-for="Date" hidden />
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" asp-items="@Html.GetEnumSelectList<WebApplication.Enumerations.EnumReportType>()"></select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Details" asp-controller="Reservations" asp-route-id="@Model.ReservationId" class="btn btn-outline-primary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
