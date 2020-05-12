@@ -23,5 +23,21 @@ namespace WebApplication.Models.AccountViewModels
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Apellido")]
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Nit/Cedula")]
+        public string Identification { get; set; }
+
+        [Phone]
+        [Display(Name = "Telefono")]
+        public string PhoneNumber { get; set; }
     }
 }

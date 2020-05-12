@@ -8,19 +8,19 @@
     <!--app css-->
     <!-- #region css -->
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/swiper/swiper.css" asp-append-version="true" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/swiper/swiper.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/css/bootstrap.custom.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
 <body>
+    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" name="logoutForm"></form>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -42,7 +42,7 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                @await  Html.PartialAsync("_LoginPartial")
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </nav>
     </header>

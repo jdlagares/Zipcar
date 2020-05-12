@@ -8,16 +8,20 @@ namespace WebApplication.Models.ManageViewModels
 {
     public class IndexViewModel
     {
-        public string Username { get; set; }
+        [Display(Name = "Nombre")]
+        [Required]
+        public string FirstName { get; set; }
 
-        public bool IsEmailConfirmed { get; set; }
+        [Display(Name = "Apellido")]
+        [Required]
+        public string LastName { get; set; }
 
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nit/Cedula")]
+        public string Identification { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Telefono")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
