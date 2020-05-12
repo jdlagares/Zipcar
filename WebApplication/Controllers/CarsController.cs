@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Data;
 using WebApplication.Models;
+using WebApplication.Models.CarsViewModels;
+using WebApplication.Services;
 
 namespace WebApplication.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IFileProvider _fileProvider;
 
-        public CarsController(ApplicationDbContext context)
+        public CarsController(ApplicationDbContext context, IFileProvider fileProvider)
         {
             _context = context;
+            _fileProvider = fileProvider;
         }
 
         // GET: Cars
@@ -150,6 +157,56 @@ namespace WebApplication.Controllers
             _context.Cars.Remove(car);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Picture(int carId)
+        {
+            return View(new PictureViewModel() 
+            {
+                CarId = carId
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Picture(int carId, PictureViewModel model)
+        {
+            if (carId != model.CarId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var car = await _context.Cars
+                    .FirstOrDefaultAsync(m => m.Id == carId);
+                if (car == null)
+                {
+                    return NotFound();
+                }
+
+                try
+                {
+                    _fileProvider.FileDelete(car.Picture);
+
+                    string extension = Path.GetExtension(model.File.FileName);
+                    var directory = "/images";
+                    var fileName = $"{Guid.NewGuid().ToString()}{extension}";
+                    var filePath = $"{directory}/{fileName}";
+                    
+                    car.Picture = filePath;
+                    _fileProvider.ImageFileCreate(directory, fileName, model.File.OpenReadStream());
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Details), new { id = carId });
+                }
+                catch (Exception)
+                {
+                    _fileProvider.FileDelete(car.Picture);
+                    throw;
+                }
+            }
+
+            return View(model);
         }
 
         private bool CarExists(int id)

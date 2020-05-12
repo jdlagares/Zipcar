@@ -83,6 +83,11 @@ namespace WebApplication.Services
         /// <param name="path">Ruta publica</param>
         public void FileDelete(string path) 
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+
             File.Delete(MapPath(path));
         }
     }

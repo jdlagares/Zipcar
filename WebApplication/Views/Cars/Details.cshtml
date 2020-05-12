@@ -9,7 +9,8 @@
 <h5>@Model.Year</h5>
 <hr />
 <div class="row">
-    <div class="col-3">
+    <div class="col-3 mb-3">
+        <a asp-action="Picture" asp-route-carId="@Model.Id" class="btn btn-primary btn-sm mb-3"><span class="fas fa-upload"></span> Cambiar imagen</a>
         @if (string.IsNullOrWhiteSpace(Model.Picture))
         {
             <img src="https://via.placeholder.com/600" class="img-fluid img-thumbnail" />
