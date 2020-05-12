@@ -13,5 +13,11 @@ namespace WebApplication.Data
             : base(options)
         {
         }
+
+        public DbSet<Parking> Parkings { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Report> Reports { get; set; }
     }
 }
