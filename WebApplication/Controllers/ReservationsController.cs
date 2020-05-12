@@ -64,6 +64,7 @@ namespace WebApplication.Controllers
         }
 
         // GET: Reservations/Create
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> Create(int carId)
         {
             var car = await _context.Cars
@@ -75,9 +76,10 @@ namespace WebApplication.Controllers
             }
 
             ViewBag.Car = car;
-            return View(new CreateViewModels() { CarId = carId });
+            return View(new CreateViewModels() { CarId = carId, DateStart = DateTime.Now.Date.AddDays(1), EstimateDateEnd = DateTime.Now.Date.AddDays(2) });
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int carId, CreateViewModels model)

@@ -98,9 +98,18 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0">
-                            <a asp-action="Create" asp-controller="Reservations" asp-route-carId="@item.Id" class="btn btn-sm btn-block btn-primary">
-                                Reservar
-                            </a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-sm btn-block btn-primary disabled">
+                                    Reservar
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="Create" asp-controller="Reservations" asp-route-carId="@item.Id" class="btn btn-sm btn-block btn-primary">
+                                    Reservar
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>

@@ -19,9 +19,12 @@
             <a class="dropdown-item" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
                 Mi Perfil
             </a>
-            <a class="dropdown-item" asp-area="" asp-controller="Reservations" asp-action="MyReservations" title="Manage">
-                Mis reservaciones
-            </a>
+            @if (User.IsInRole("Customer"))
+            {
+                <a class="dropdown-item" asp-area="" asp-controller="Reservations" asp-action="MyReservations" title="Manage">
+                    Mis reservaciones
+                </a>
+            }
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href='javascript:document.logoutForm.submit();'>Cerrar sesion</a>
         </div>

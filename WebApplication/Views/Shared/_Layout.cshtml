@@ -34,11 +34,25 @@
                     <li class="nav-item active">
                         <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Search" asp-controller="Cars">Catalogo</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Nuestros establecimientos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Politica de privacidad</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Sobre nosotros</a>
+                    </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </nav>
     </header>
+
+    @RenderSection("Jumbotron", required: false)
 
     <div class="container">
         <main role="main" class="pb-3">
