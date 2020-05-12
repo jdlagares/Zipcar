@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Enumerations;
@@ -24,6 +25,7 @@ namespace WebApplication.Models
 
         public string ApplicationUserId { get; set; }
 
+        [Required]
         public ApplicationUser ApplicationUser { get; set; }
 
         public bool Returned { get; set; }
