@@ -1,0 +1,87 @@
+﻿@model WebApplication.Models.Car
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Detalles de carro";
+}
+
+<h2 class="mt-5">@Model.Brand @Model.Model</h2>
+<h5>@Model.Year</h5>
+<hr />
+<div class="row">
+    <div class="col-3">
+        @if (string.IsNullOrWhiteSpace(Model.Picture))
+        {
+            <img src="https://via.placeholder.com/600" class="img-fluid img-thumbnail" />
+        }
+        else
+        {
+            <img src="@Model.Picture" class="img-fluid img-thumbnail" />
+        }
+    </div>
+    <div class="col-lg-9">
+        <h4>Detalles</h4>
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Brand)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Brand)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Model)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Model)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Capacity)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Capacity)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.CarCode)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CarCode)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PricePerDay)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PricePerDay)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PricePerMonth)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PricePerMonth)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PricePerYear)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PricePerYear)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.CarType)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CarType)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Parking)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Parking.Address)
+            </dd>
+        </dl>
+    </div>
+</div>

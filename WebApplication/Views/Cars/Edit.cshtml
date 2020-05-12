@@ -1,0 +1,72 @@
+﻿@model WebApplication.Models.Car
+
+@{
+    ViewData["Title"] = "Editar parqueadero";
+    Layout = "_LayoutAdmin";
+}
+
+<h2 class="mt-5">@ViewData["Title"]</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarCode" class="control-label"></label>
+                <input asp-for="CarCode" class="form-control" />
+                <span asp-validation-for="CarCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerDay" class="control-label"></label>
+                <input asp-for="PricePerDay" class="form-control" />
+                <span asp-validation-for="PricePerDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerMonth" class="control-label"></label>
+                <input asp-for="PricePerMonth" class="form-control" />
+                <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerYear" class="control-label"></label>
+                <input asp-for="PricePerYear" class="form-control" />
+                <span asp-validation-for="PricePerYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarType" class="control-label"></label>
+                <select asp-for="CarType" class="form-control" asp-items="@Html.GetEnumSelectList<WebApplication.Enumerations.EnumCarType>()"></select>
+                <span asp-validation-for="CarType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParkingId" class="control-label"></label>
+                <select asp-for="ParkingId" class="form-control" asp-items="ViewBag.ParkingId"></select>
+                <span asp-validation-for="ParkingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
