@@ -241,6 +241,11 @@ namespace WebApplication.Controllers
                 qry = qry.Where(p => p.Year == m.Year);
             }
 
+            if (m.Capacity.HasValue)
+            {
+                qry = qry.Where(p => p.Capacity == m.Capacity);
+            }
+
             ViewBag.Cars = qry;
             ViewBag.Brands = _context.Cars.Select(p => p.Brand).Distinct();
             ViewBag.Capacities = _context.Cars.Select(p => p.Capacity).Distinct();
