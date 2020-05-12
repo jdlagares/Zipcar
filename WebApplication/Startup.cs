@@ -48,6 +48,7 @@ namespace WebApplication
             .AddDefaultTokenProviders();
 
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IFileProvider, FileProvider>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
