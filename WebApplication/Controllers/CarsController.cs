@@ -209,9 +209,56 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        public IActionResult Search(SearchViewModel m)
+        {
+            if (m.Start == null || m.End == null)
+            {
+                m.Start = DateTime.Now.Date.AddDays(7);
+                m.End = DateTime.Now.Date.AddDays(16);
+            }
+
+            if (m.Start > m.End)
+            {
+                m.Start = DateTime.Now.Date.AddDays(7);
+                m.End = DateTime.Now.Date.AddDays(16);
+            }
+
+            var qry = GetAvailableCars(m.Start.Value, m.End.Value);
+
+            if (!string.IsNullOrWhiteSpace(m.Brand))
+            {
+                qry = qry.Where(p => p.Brand == m.Brand);
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.Model))
+            {
+                qry = qry.Where(p => p.Model == m.Model);
+            }
+
+            if (m.Year.HasValue)
+            {
+                qry = qry.Where(p => p.Year == m.Year);
+            }
+
+            ViewBag.Cars = qry;
+            ViewBag.Brands = _context.Cars.Select(p => p.Brand).Distinct();
+            ViewBag.Capacities = _context.Cars.Select(p => p.Capacity).Distinct();
+            ViewBag.Year = _context.Cars.Select(p => p.Year).Distinct();
+            ViewBag.Model = _context.Cars.Select(p => p.Model).Distinct();
+            return View(m);
+        }
+
+
         private bool CarExists(int id)
         {
             return _context.Cars.Any(e => e.Id == id);
+        }
+
+        private IQueryable<Car> GetAvailableCars(DateTime start, DateTime end)
+        {
+            return _context.Cars.Include(p => p.Reservations)
+                .Where(p => !p.Reservations.Any(r => (r.DateStart <= end) && (r.EstimateDateEnd >= start)));
         }
     }
 }

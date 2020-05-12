@@ -54,5 +54,7 @@ namespace WebApplication.Models
         public int ParkingId { get; set; }
 
         public Parking Parking { get; set; }
+
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }
