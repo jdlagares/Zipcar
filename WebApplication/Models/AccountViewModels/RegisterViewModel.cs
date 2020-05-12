@@ -22,6 +22,7 @@ namespace WebApplication.Models.AccountViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Required]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Nombre")]
@@ -38,6 +39,7 @@ namespace WebApplication.Models.AccountViewModels
 
         [Phone]
         [Display(Name = "Telefono")]
+        [Required]
         public string PhoneNumber { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace WebApplication.Models.ManageViewModels
 
         [Phone]
         [Display(Name = "Telefono")]
+        [Required]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
