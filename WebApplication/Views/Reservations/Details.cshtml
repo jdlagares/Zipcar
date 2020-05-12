@@ -1,0 +1,95 @@
+﻿@model WebApplication.Models.Reservation
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h2 class="mt-5">@Model.Car.Brand @Model.Car.Model (@Model.Car.Year)</h2>
+<h6>@Model.DateStart.ToString("dd/MM/yyyy hh:mm") - @Model.EstimateDateEnd.ToString("dd/MM/yyyy hh:mm")</h6>
+<hr />
+<div class="row">
+    <div class="col-lg-3 mb-3">
+        @if (string.IsNullOrWhiteSpace(Model.Car.Picture))
+        {
+            <img src="https://via.placeholder.com/600" class="img-fluid img-thumbnail" />
+        }
+        else
+        {
+            <img src="@Model.Car.Picture" class="img-fluid img-thumbnail" />
+        }
+    </div>
+    <div class="col-lg-9">
+        <h4>Detalles</h4>
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.Brand)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.Brand)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.Year)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.Year)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.Model)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.Model)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.Capacity)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.Capacity)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.CarCode)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.CarCode)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.CarType)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.CarType)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Car.Parking)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Car.Parking.Address)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Transactions.First().Concept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transactions.First().Value)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Transactions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Concept)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

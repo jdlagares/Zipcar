@@ -1,0 +1,113 @@
+﻿@model WebApplication.Models.ReservationsViewModels.CreateViewModels
+
+@{
+    ViewData["Title"] = "Reservar";
+    Car car = (Car)ViewBag.Car;
+}
+
+<h2 class="mt-5">@car.Brand @car.Model</h2>
+<h5>@car.Year</h5>
+<hr />
+<div class="row">
+    <div class="col-3 mb-3">
+        @if (string.IsNullOrWhiteSpace(car.Picture))
+        {
+            <img src="https://via.placeholder.com/600" class="img-fluid img-thumbnail" />
+        }
+        else
+        {
+            <img src="@car.Picture" class="img-fluid img-thumbnail" />
+        }
+    </div>
+    <div class="col-lg-9">
+        <h4>Detalles</h4>
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.Brand)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.Brand)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.Year)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.Year)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.Model)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.Model)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.Capacity)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.Capacity)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.CarCode)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.CarCode)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.PricePerDay)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.PricePerDay)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.PricePerMonth)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.PricePerMonth)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.PricePerYear)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.PricePerYear)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.CarType)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.CarType)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => car.Parking)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => car.Parking.Address)
+            </dd>
+        </dl>
+        <hr />
+        <h6>Hacer reserva</h6>
+
+        <form asp-action="Create" asp-route-carId="@Model.CarId">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="CarId" hidden />
+            <div class="form-group">
+                <label asp-for="Plan" class="control-label"></label>
+                <select asp-for="Plan" class="form-control" asp-items="@Html.GetEnumSelectList<WebApplication.Enumerations.EnumPlan>()"></select>
+                <span asp-validation-for="Plan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateStart" class="control-label"></label>
+                <input asp-for="DateStart" class="form-control" />
+                <span asp-validation-for="DateStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimateDateEnd" class="control-label"></label>
+                <input asp-for="EstimateDateEnd" class="form-control" />
+                <span asp-validation-for="EstimateDateEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Reservar" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>

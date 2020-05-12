@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebApplication.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Reservaciones";
+    Layout = "_LayoutAdmin";
+}
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.CarCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimateDateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealDateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th style="width: 12rem"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.CarCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimateDateEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RealDateEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
+                <td>
+                    <a asp-action="DetailsAdmin" asp-route-id="@item.Id" class="float-left btn btn-sm btn-outline-primary"><span class="fas fa-eye"></span> Ver</a>
+                    @if (item.Delivered == false)
+                    {
+                        <form asp-action="Delivered" asp-route-id="@item.Id">
+                            <input name="Id" value="@item.Id" hidden />
+                            <input type="submit" class="float-left ml-2 btn btn-sm btn-outline-primary" value="Entregar" />
+                        </form>
+                    }
+                    else if (item.Returned == false)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="float-left ml-2 btn btn-sm btn-outline-primary">Finalizar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

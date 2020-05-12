@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Mis reservaciones";
+}
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+<hr />
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <div class="list-group-item flex-column align-items-start">
+            <div class="row">
+                <div class="col-lg-2 col-md-3">
+                    @if (string.IsNullOrWhiteSpace(item.Car.Picture))
+                    {
+                        <img src="https://via.placeholder.com/600" class="img-fluid img-thumbnail" />
+                    }
+                    else
+                    {
+                        <img src="@item.Car.Picture" class="img-fluid img-thumbnail" />
+                    }
+                </div>
+                <div class="col-lg-10 col-md-9">
+                    <div>
+                        <h4 class="mt-5">@item.Car.Brand @item.Car.Model (@item.Car.Year)</h4>
+                        <h6>@item.DateStart.ToString("dd/MM/yyyy hh:mm") - @item.EstimateDateEnd.ToString("dd/MM/yyyy hh:mm")</h6>
+                        <hr />
+                        @if (item.Returned)
+                        {
+                            <span class="badge badge-primary">Finalizado</span>
+                        }
+                        else if (item.Delivered)
+                        {
+                            <span class="badge badge-secondary">En progreso</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Programado</span>
+                        }
+                    </div>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary mt-2"><span class="fas fa-eye"></span> Ver</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
