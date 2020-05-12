@@ -98,7 +98,7 @@ namespace WebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Year,Model,Capacity,CarCode,PricePerDay,PricePerMonth,PricePerYear,CarType,ParkingId")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Picture,Brand,Year,Model,Capacity,CarCode,PricePerDay,PricePerMonth,PricePerYear,CarType,ParkingId")] Car car)
         {
             if (id != car.Id)
             {
