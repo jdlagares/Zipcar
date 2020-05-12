@@ -159,11 +159,17 @@ namespace WebApplication.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string applicationUserId = null)
         {
             IQueryable<Reservation> reservations = _context.Reservation
                 .Include(p => p.Car)
                 .Include(p => p.ApplicationUser);
+
+            if (!string.IsNullOrEmpty(applicationUserId))
+            {
+                reservations = reservations.Where(p => p.ApplicationUserId == applicationUserId);
+            }
+
             return View(await reservations.ToListAsync());
         }
 
