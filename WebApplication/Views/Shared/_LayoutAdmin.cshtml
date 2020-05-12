@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WebApplication.Models
+
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="es-co">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Application</title>
+
+    <!--app css-->
+    <!-- #region css -->
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/swiper/swiper.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/swiper/swiper.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" href="~/css/bootstrap.custom.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</head>
+<body>
+    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" name="logoutForm"></form>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Index" asp-controller="Dashboard">Home</a>
+                    </li>
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </nav>
+    </header>
+
+    <!--main page-->
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <!--Sidebar fixed-->
+            <div id="sidebar" class="col-md-2 d-none d-md-block sidebar sidebar-light">
+                <div class="sidebar-sticky">
+                    <div class="jumbotron jumbotron-fluid bg-transparent px-3 py-2">
+                        <div class="text-center">
+                            <h5 class="text-truncate">Hola!</h5>
+                            <h6 class="text-truncate mb-3 small">@UserManager.GetUserName(User)</h6>
+                            <a class="btn btn-sm  btn-outline-secondary mb-2" asp-controller="Manage" asp-action="Index">Mi Perfil</a>
+                        </div>
+                    </div>
+
+                    <h6 class="sidebar-heading px-3 mt-4 mb-1">
+                        Administracion
+                    </h6>
+                    <ul class="nav flex-column mt-2">
+                        <li class="nav-item item-sidebar">
+                            <a asp-controller="Parkings" asp-action="Index" class="nav-link">
+                                <span class="fas fa-parking"></span><span class=" ml-2">Parqueaderos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item item-sidebar">
+                            <a asp-controller="Cars" asp-action="Index" class="nav-link">
+                                <span class="fas fa-car"></span><span class=" ml-2">Carros</span>
+                            </a>
+                        </li>
+                        <li class="nav-item item-sidebar">
+                            <a asp-controller="Cars" asp-action="Index" class="nav-link">
+                                <span class="fas fa-flag"></span><span class=" ml-2">Reportes sin resolver</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading px-3 mt-4 mb-1">
+                        Usuarios
+                    </h6>
+                    <ul class="nav flex-column mt-2">
+                        <li class="nav-item item-sidebar">
+                            <a asp-controller="Parkings" asp-action="Index" class="nav-link">
+                                <span class="fas fa-parking"></span><span class=" ml-2">Gestion</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="mb-5">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Content-->
+            <main id="sidebarContent" class="col-md-10 ml-sm-auto px-0 mb-5">
+                <div class="px-4">
+                    @RenderBody()
+                </div>
+            </main>
+
+
+
+        </div>
+    </div>
+
+    <!--app scripts-->
+    <!-- #region scripts -->
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/swiper/swiper.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/lib/swiper/swiper.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js" asp-append-version="true"></script>
+    </environment>
+    <!-- #endregion -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
